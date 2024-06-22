@@ -23,6 +23,7 @@ def webhook():
         resp.message("Message received and saved.")
         return str(resp)
     else:
+        print("Unsupported Media Type")  # Debug statement
         return "Unsupported Media Type", 415
 
 @app.route('/download', methods=['GET'])
@@ -47,8 +48,11 @@ def save_to_excel(sender, message):
     writer = pd.ExcelWriter(file_path, engine='openpyxl')
     writer.book = book
     df = pd.DataFrame([[sender, message]], columns=['Sender', 'Message'])
-    df.to_excel(writer, sheet_name=sheet_name, index=False, header=False, startrow=writer.sheets[sheet_name].max_row if sheet_name in writer.sheets else 1)
+    startrow = writer.sheets[sheet_name].max_row if sheet_name in writer.sheets else 1
+    print(f"Writing to row: {startrow}")  # Debug statement
+    df.to_excel(writer, sheet_name=sheet_name, index=False, header=False, startrow=startrow)
     writer.save()
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    port = int(os.environ.get('PORT', 5000))
+    app.run(host='0.0.0.0', port=port, debug=True)
