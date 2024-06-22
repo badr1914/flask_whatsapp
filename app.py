@@ -12,6 +12,7 @@ def index():
 
 @app.route('/webhook', methods=['POST'])
 def webhook():
+    print(f"Received request: {request}")  # Debug statement
     print(f"Received Content-Type: {request.content_type}")  # Debug statement
     if request.content_type == 'application/x-www-form-urlencoded':
         from_number = request.form['From']
