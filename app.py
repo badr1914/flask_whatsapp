@@ -27,12 +27,9 @@ def webhook():
 @app.route('/download', methods=['GET'])
 def download_file():
     file_path = 'messages.xlsx'
-    print(f"Checking if {file_path} exists...")  # Debug statement
     if os.path.exists(file_path):
-        print(f"{file_path} found. Sending file...")  # Debug statement
         return send_file(file_path, as_attachment=True)
     else:
-        print(f"{file_path} not found.")  # Debug statement
         return "No messages saved yet.", 404
 
 def save_to_excel(sender, message):
@@ -51,7 +48,6 @@ def save_to_excel(sender, message):
     df = pd.DataFrame([[sender, message]], columns=['Sender', 'Message'])
     df.to_excel(writer, sheet_name=sheet_name, index=False, header=False, startrow=writer.sheets[sheet_name].max_row if sheet_name in writer.sheets else 1)
     writer.save()
-    print(f"Message saved to {file_path}")  # Debug statement
 
 if __name__ == '__main__':
     app.run(debug=True)

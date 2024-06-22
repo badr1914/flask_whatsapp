@@ -1,7 +1,6 @@
 import pandas as pd
 from openpyxl import Workbook
 
-# Define the file path and sheet name
 file_path = 'messages.xlsx'
 sheet_name = 'Sheet1'
 
