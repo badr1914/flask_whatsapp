@@ -1,6 +1,4 @@
-#!/bin/sh
-'''exec' "/Users/baderitarji/Desktop/flask demo/flask_whatsapp/venv/bin/python3.12" "$0" "$@"
-' '''
+#!/Users/baderitarji/Desktop/flask_whatsapp/venv/bin/python3.12
 # -*- coding: utf-8 -*-
 import re
 import sys
