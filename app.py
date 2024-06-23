@@ -49,21 +49,14 @@ def save_to_excel(sender, message):
         wb.save(file_path)
     
     book = load_workbook(file_path)
-    writer = pd.ExcelWriter(file_path, engine='openpyxl', mode='a')
-    writer.book = book
-    writer.sheets = {ws.title: ws for ws in book.worksheets}
-
-    df = pd.DataFrame([[sender, message]], columns=['Sender', 'Message'])
+    sheet = book[sheet_name]
+    data = [[sender, message]]
     
-    if sheet_name in writer.sheets:
-        startrow = writer.sheets[sheet_name].max_row
-    else:
-        startrow = 0
-
-    print(f"Writing to row: {startrow}")  # Debug statement
-    df.to_excel(writer, sheet_name=sheet_name, index=False, header=False, startrow=startrow)
-    writer.save()
-    writer.close()
+    for row in data:
+        sheet.append(row)
+    
+    book.save(file_path)
+    print(f"Message from {sender} saved to {file_path}")
 
 if __name__ == '__main__':
     port = int(os.environ.get('PORT', 5000))
