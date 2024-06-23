@@ -1,20 +1,15 @@
-import pandas as pd
 from openpyxl import Workbook
 
-file_path = 'messages.xlsx'
-sheet_name = 'Sheet1'
+# Create a new Workbook
+wb = Workbook()
 
-# Create a new workbook and worksheet
-book = Workbook()
-sheet = book.active
-sheet.title = sheet_name
+# Get the active sheet
+ws = wb.active
 
-# Create initial DataFrame with headers
-df = pd.DataFrame(columns=['Sender', 'Message'])
+# Rename the active sheet to "sheet1"
+ws.title = "sheet1"
 
-# Write the DataFrame to the Excel file
-with pd.ExcelWriter(file_path, engine='openpyxl') as writer:
-    writer.book = book
-    df.to_excel(writer, sheet_name=sheet_name, index=False)
+# Save the workbook as 'message.xlsx'
+wb.save("message.xlsx")
 
-print(f"{file_path} created with headers.")
+print("Excel file 'message.xlsx' with sheet 'sheet1' has been created.")

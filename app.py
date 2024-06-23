@@ -38,20 +38,32 @@ def save_to_excel(sender, message):
     file_path = 'messages.xlsx'
     sheet_name = 'Sheet1'
     print(f"Saving message from {sender}: {message} to {file_path}")  # Debug statement
-    try:
-        book = load_workbook(file_path)
-    except FileNotFoundError:
+    
+    if not os.path.exists(file_path):
         print(f"{file_path} not found. Creating new workbook.")  # Debug statement
-        book = Workbook()
-        book.save(file_path)
-        book = load_workbook(file_path)
-    writer = pd.ExcelWriter(file_path, engine='openpyxl')
+        wb = Workbook()
+        ws = wb.active
+        ws.title = sheet_name
+        headers = ['Sender', 'Message']
+        ws.append(headers)
+        wb.save(file_path)
+    
+    book = load_workbook(file_path)
+    writer = pd.ExcelWriter(file_path, engine='openpyxl', mode='a')
     writer.book = book
+    writer.sheets = {ws.title: ws for ws in book.worksheets}
+
     df = pd.DataFrame([[sender, message]], columns=['Sender', 'Message'])
-    startrow = writer.sheets[sheet_name].max_row if sheet_name in writer.sheets else 1
+    
+    if sheet_name in writer.sheets:
+        startrow = writer.sheets[sheet_name].max_row
+    else:
+        startrow = 0
+
     print(f"Writing to row: {startrow}")  # Debug statement
     df.to_excel(writer, sheet_name=sheet_name, index=False, header=False, startrow=startrow)
     writer.save()
+    writer.close()
 
 if __name__ == '__main__':
     port = int(os.environ.get('PORT', 5000))
