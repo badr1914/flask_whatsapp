@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Purchase Order</title>
+</head>
+<body>
+    <h1>تفاصيل أمر الشراء</h1>
+    <form method="POST" action="/handle_purchase_order">
+        <label for="details">تفاصيل الشراء:</label>
+        <input type="text" id="details" name="details"><br>
+        <label for="amount">المبلغ:</label>
+        <input type="text" id="amount" name="amount"><br>
+        <label for="type">نوع الشراء:</label>
+        <select id="type" name="type">
+            <option value="الصيانة">الصيانة</option>
+            <option value="الأثاث">الأثاث</option>
+            <option value="أدوات التنظيف">أدوات التنظيف</option>
+            <option value="أخرى">أخرى</option>
+        </select><br>
+        <input type="submit" value="Submit">
+    </form>
+</body>
+</html>
