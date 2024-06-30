@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Message Manager</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container">
+        <h1>إرسال رسالة للمدير العام</h1>
+        <form method="POST" action="/handle_message_manager">
+            <div class="form-group">
+                <label for="message">ما هي الرسالة التي تود إرسالها للمدير العام؟</label>
+                <textarea id="message" name="message" class="form-control" required></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary">إرسال</button>
+        </form>
+    </div>
+</body>
+</html>

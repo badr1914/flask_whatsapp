@@ -3,17 +3,22 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Flask WhatsApp Integration</title>
+    <title>Contact</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
 </head>
 <body>
-    <h1>Flask WhatsApp Integration</h1>
-    <form method="POST" action="/handle_button">
-        <button type="submit" name="action" value="purchase_order">أمر شراء</button>
-        <button type="submit" name="action" value="maintenance_request">طلب صيانة</button>
-        <button type="submit" name="action" value="contact">التواصل</button>
-        <button type="submit" name="action" value="message_manager">إرسال رسالة للمدير العام</button>
-        <button type="submit" name="action" value="admin">Admin</button>
-        <button type="submit" name="action" value="request_report">طلب تقرير</button>
-    </form>
+    <div class="container">
+        <h1>التواصل</h1>
+        <form method="POST" action="/handle_contact">
+            <div class="form-group">
+                <label for="contact_choice">يرجى اختيار قسم التواصل:</label>
+                <select id="contact_choice" name="contact_choice" class="form-control">
+                    <option value="sales">إدارة المبيعات</option>
+                    <option value="reception">الاستقبال</option>
+                </select>
+            </div>
+            <button type="submit" class="btn btn-primary">إرسال</button>
+        </form>
+    </div>
 </body>
 </html>
