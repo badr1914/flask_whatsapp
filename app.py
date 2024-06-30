@@ -1,4 +1,4 @@
-from flask import Flask, request, render_template, redirect, url_for, send_file
+from flask import Flask, render_template, request, redirect, url_for
 import pandas as pd
 from openpyxl import load_workbook, Workbook
 from twilio.twiml.messaging_response import MessagingResponse
@@ -11,6 +11,14 @@ from datetime import datetime
 from PIL import Image
 import openai
 import re
+
+app = Flask(__name__)
+
+# Your existing Flask routes and logic
+
+if __name__ == '__main__':
+    app.run(debug=True)
+
 
 app = Flask(__name__)
 
