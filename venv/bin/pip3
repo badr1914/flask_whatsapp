@@ -1,4 +1,4 @@
-#!/Users/baderitarji/Desktop/flask_whatsapp/venv/bin/python3.12
+#!/Users/baderitarji/Desktop/flask_whatsapp/venv/bin/python
 # -*- coding: utf-8 -*-
 import re
 import sys
