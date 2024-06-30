@@ -1,24 +1,13 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Contact</title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <title>Home</title>
 </head>
 <body>
-    <div class="container">
-        <h1>التواصل</h1>
-        <form method="POST" action="/handle_contact">
-            <div class="form-group">
-                <label for="contact_choice">يرجى اختيار قسم التواصل:</label>
-                <select id="contact_choice" name="contact_choice" class="form-control">
-                    <option value="sales">إدارة المبيعات</option>
-                    <option value="reception">الاستقبال</option>
-                </select>
-            </div>
-            <button type="submit" class="btn btn-primary">إرسال</button>
-        </form>
-    </div>
+    <h1>Home Page</h1>
+    <a href="{{ url_for('contact') }}">Contact</a>
+    <a href="{{ url_for('purchase') }}">Purchase</a>
+    <a href="{{ url_for('maintenance') }}">Maintenance</a>
+    <a href="{{ url_for('admin') }}">Admin</a>
 </body>
 </html>
